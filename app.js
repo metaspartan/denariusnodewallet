@@ -136,7 +136,7 @@ app.post('/login', function (req, res, next) {
                 req.flash('errors', { msg: 'Recaptcha is invalid!' });
                 return res.redirect('/login');
         });
-    }, userController.postLogin, userController.check2FA
+    }, userController.postLogin
 );
 app.get('/2fa', passportConfig.isAuthenticated, userController.get2FA);
 app.post('/2fa', passportConfig.isAuthenticated, userController.post2FA);
