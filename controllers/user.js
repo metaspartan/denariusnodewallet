@@ -57,15 +57,11 @@ exports.postLogin = (req, res, next) => {
 //Route 2FA On or Off Check
 
 exports.check2FA = (req, res) => {
-  console.log('check2FA function');
   if(req.user.secret) {
-        req.session.method = 'totp';
         res.redirect('/2fa');
-        console.log('2FA Is Enabled');
     } else {
         req.session.method = 'plain';
         res.redirect('/wallet');
-        console.log('2FA Is Disabled');
     }
 };
 
@@ -94,6 +90,7 @@ exports.post2FA = (req, res) => {
 
   if (verified) {
     passport.authenticate('totp');
+    req.session.method = 'totp';
     return res.redirect('/wallet');
   } else {
     req.flash('errors', { msg: 'Invalid 2FA Token! Try again!' });
@@ -108,6 +105,7 @@ exports.post2FA = (req, res) => {
  */
 exports.logout = (req, res) => {
   req.logout();
+  req.session.method = null; // destroy totp session on logout
   res.redirect('/');
 };
 
