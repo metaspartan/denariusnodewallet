@@ -1,0 +1,40 @@
+extends ../layout
+
+block content
+  .page-header
+    if user
+      .page-header
+        p
+          h3(align='center')
+            i.fa.fa-exchange
+            |  All Denarius Transactions
+        if (transactions)
+          - transactions.sort((a, b)=>{a = new Date(a.timereceived);b = new Date(b.timereceived);return a>b ? -1 : a<b ? 1 : 0;})
+          each transaction in transactions
+            .panel.panel-default
+              if (transaction.category == 'receive')
+                .panel-heading.txreceive.mb
+                  .pull-left
+                    | Transaction Received
+                    .date= new Date(transaction.timereceived*1000).toUTCString()
+                  .pull-right
+                    strong  !{transaction.confirmations}
+              else
+                .panel-heading.txsent.mb
+                  .pull-left
+                    | Transaction Sent
+                    .date= new Date(transaction.timereceived*1000).toUTCString()
+                  .pull-right
+                    strong  !{transaction.confirmations}
+              .panel-body
+                p(align='center')
+                  strong.txamount !{transaction.amount.toFixed(8)}
+                p(align='center')
+                  .txaddress !{transaction.address}
+                p(align='center') 
+                  | TX ID: 
+                  a.txid(href="https://chainz.cryptoid.info/dnr/tx.dws?" + transaction.txid, target='_blank') !{transaction.txid.substring(0,30)}
+          p(align='center')
+            a.btn.btn-default(href='/wallet') Go back to wallet
+        else
+            h3(align='center', style='color: #bbb;') No Transactions Available
