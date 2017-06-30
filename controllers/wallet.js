@@ -46,12 +46,10 @@ exports.addresses = function (req, res) {
   client.getAddressesByAccount(`dnrw(${username})`, function (err, addresses, resHeaders) {
       if (err) return console.log(err);
 
-      var addy = addresses[0];
+      var addy = addresses.slice(-1)[0];
 
       client.dumpPrivKey(`${addy}`, function (err, privkey, resHeaders) {
         if (err) return console.log(err);
-
-        console.log('Priv Key: ' + privkey);
 
       res.render('account/addresses', { title: 'My Addresses', user: req.user, addy: addy, addresses: addresses, privkey: privkey });
 
@@ -80,7 +78,7 @@ exports.wallet = function (req, res) {
         client.getAddressesByAccount(`dnrw(${username})`, function (err, addresses, resHeaders) {
             if (error) return console.log(error);
 
-            var address = addresses[0];
+            var address = addresses.slice(-1)[0];
 
             if (typeof address == 'undefined') {
                 client.getNewAddress(`dnrw(${username})`, function (error, addr, resHeaders) {
