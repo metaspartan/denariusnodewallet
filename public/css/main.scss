@@ -121,13 +121,6 @@ a.forgot, a.forgot:hover {
   color: #FFF;
 }
 
-.navbar-brand {
-   margin: 0 auto;
-   left: 50%;
-   position: absolute;
-   transform: translateX(-50%);
-}
-
 .navbar-send {
   float: right;
   font-size: 23px;
@@ -145,6 +138,10 @@ a.send {
 
 .ml {
   margin-left: 15px;
+}
+
+.mt {
+  margin-top: 7px;
 }
 
 .mb {
@@ -186,8 +183,12 @@ a.send {
 
 .addylist {
   font-size: 21px;
-  font-size: 1vw;
+  font-size: 2vw;
   text-align: center;
+}
+
+#box {
+  display: none;
 }
 
 .mainaddy {
@@ -197,10 +198,16 @@ a.send {
     margin-top: 60px;
 }
 
-@media (max-width: 757px) {
+@media (max-width: 800px) {
   .mainaddy {
     margin: 0;
     font-size:1em;
+  }
+  .navbar-brand {
+     margin: 0 auto;
+     left: 50%;
+     position: absolute;
+     transform: translateX(-50%);
   }
 }
 

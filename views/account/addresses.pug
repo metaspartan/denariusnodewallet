@@ -2,23 +2,12 @@ extends ../layout
 
 block content
   script.
-    function hide() {
-      var x = document.getElementById('addrss');
-      if (x.style.display === 'none') {
-          $('#addrss').slideDown();
-          $("#plus").html("<i class='fa fa-minus'></i>");
-      } else {
-          $('#addrss').slideUp();
-          $("#plus").html("<i class='fa fa-plus'></i>");
-      }
-    }
-    function hide1() {
+    function show() {
       var x = document.getElementById('box');
       if (x.style.display === 'none') {
-          x.style.display = 'none';
-          $('#box').slideDown();
+          x.style.display = 'block';
       } else {
-          $('#box').slideUp();
+          x.style.display = 'none';
       }
     }
   .container
@@ -27,11 +16,24 @@ block content
       h3(align='center')  Denarius Addresses
       p(align='center') 
         | Main DNR Address
-        |  #{addy}
-        a.btn.btn-xs.btn-default(href='#', onclick='hide1()') View Private Key
-        #box.priv #{privkey}
+        ul.list-group
+          li.list-group-item
+            .row
+              .col-md-6.mt(align='center')
+                strong #{addy}
+              .col-md-6(align='center')
+                a.btn.btn-sm.btn-default(href='#', onclick='show()') View Private Key
+        #box(align='center')
+          em Write down or import your private key into Denarius-QT or denariusd to access your main wallet address
+          br
+          strong #{privkey}
+      p(align='center')
+        h3(align='center') List of Addresses
+        p(align='center') NOTE: You can only obtain the private key for your main address!
+      ul.list-group
       each address in addresses
-        .addylist #{address}
+        li.list-group-item
+          | #{address}
       br
       p(align='center')
         a.btn.btn-default(href='/wallet', role='button') Go back to your wallet       

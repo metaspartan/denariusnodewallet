@@ -24,8 +24,10 @@
           li
             a(href='/status') Status
         else
-          li(class=(title == 'Wallet') ? 'active' : undefined)
+          li(class=(title == 'My Wallet') ? 'active' : undefined)
             a(href='/wallet') My Wallet
+          li(class=(title == 'My Addresses') ? 'active' : undefined)
+            a(href='/addresses') My Addresses
       ul.nav.navbar-nav.navbar-right
         if !user
           li(class=(title == 'Login') ? 'active' : undefined)
