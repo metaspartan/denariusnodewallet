@@ -324,11 +324,9 @@ exports.isAuthorized = (req, res, next) => {
 exports.ensureTotp = (req, res, next) => {
     if((req.user.secret && req.session.method == 'totp') ||
        (!req.user.secret && req.session.method == 'plain')) {
-        console.log('Going next ensureTotp');
         return next();
     }
     if (req.user.secret && req.session.method == 'totp') {
-      console.log(' ensureTotp');
       req.flash('info', { msg: "Please enter your two-factor authentication token code."});
       res.redirect('/2fa/');
     } else {
