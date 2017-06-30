@@ -100,7 +100,8 @@ block content
                 p(align='center') 
                   | TX ID: 
                   a.txid(href="https://chainz.cryptoid.info/dnr/tx.dws?" + transaction.txid, target='_blank') !{transaction.txid.substring(0,30)}
-          p(align='center')
-            a.btn.btn-default(href='/transactions') View All Transactions
-        else
+            p(align='center')
+              a.btn.btn-default(href='/transactions') View All Transactions
+          else
+            br
             h3(align='center', style='color: #bbb;') No Transactions Available

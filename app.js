@@ -169,6 +169,7 @@ app.get('/account/unlink/:provider', passportConfig.isAuthenticated, passportCon
  * Wallet app routes.
  */
 app.get('/wallet', passportConfig.isAuthenticated, passportConfig.ensureTotp, walletController.wallet);
+app.get('/addresses', passportConfig.isAuthenticated, passportConfig.ensureTotp, walletController.addresses);
 app.get('/transactions', passportConfig.isAuthenticated, passportConfig.ensureTotp, walletController.transactions);
 app.post('/newaddress', passportConfig.isAuthenticated, passportConfig.ensureTotp, walletController.address);
 app.post('/withdraw/send', passportConfig.isAuthenticated, passportConfig.ensureTotp, walletController.withdraw);

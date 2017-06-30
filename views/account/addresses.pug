@@ -1,0 +1,37 @@
+extends ../layout
+
+block content
+  script.
+    function hide() {
+      var x = document.getElementById('addrss');
+      if (x.style.display === 'none') {
+          $('#addrss').slideDown();
+          $("#plus").html("<i class='fa fa-minus'></i>");
+      } else {
+          $('#addrss').slideUp();
+          $("#plus").html("<i class='fa fa-plus'></i>");
+      }
+    }
+    function hide1() {
+      var x = document.getElementById('box');
+      if (x.style.display === 'none') {
+          x.style.display = 'none';
+          $('#box').slideDown();
+      } else {
+          $('#box').slideUp();
+      }
+    }
+  .container
+    if user
+    .page-header
+      h3(align='center')  Denarius Addresses
+      p(align='center') 
+        | Main DNR Address
+        |  #{addy}
+        a.btn.btn-xs.btn-default(href='#', onclick='hide1()') View Private Key
+        #box.priv #{privkey}
+      each address in addresses
+        .addylist #{address}
+      br
+      p(align='center')
+        a.btn.btn-default(href='/wallet', role='button') Go back to your wallet       

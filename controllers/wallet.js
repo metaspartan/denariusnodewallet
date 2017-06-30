@@ -39,6 +39,27 @@ exports.getWithdraw = (req, res) => {
   });
 };
 
+exports.addresses = function (req, res) {
+  var username = req.user.email;
+
+  //List All Addresses
+  client.getAddressesByAccount(`dnrw(${username})`, function (err, addresses, resHeaders) {
+      if (err) return console.log(err);
+
+      var addy = addresses[0];
+
+      client.dumpPrivKey(`${addy}`, function (err, privkey, resHeaders) {
+        if (err) return console.log(err);
+
+        console.log('Priv Key: ' + privkey);
+
+      res.render('account/addresses', { title: 'My Addresses', user: req.user, addy: addy, addresses: addresses, privkey: privkey });
+
+  });
+});
+
+}
+
 exports.wallet = function (req, res) {
     var username = req.user.email;
 
@@ -55,19 +76,24 @@ exports.wallet = function (req, res) {
             if (err) return console.log(err);
 
         //List Account Address
-        client.getAccountAddress(`dnrw(${username})`, function (error, address, resHeaders) {
+        //client.getAccountAddress(`dnrw(${username})`, function (error, address, resHeaders) {
+        client.getAddressesByAccount(`dnrw(${username})`, function (err, addresses, resHeaders) {
             if (error) return console.log(error);
 
-            var qr = 'denarius:'+address
+            var address = addresses[0];
+
+            if (typeof address == 'undefined') {
+                client.getNewAddress(`dnrw(${username})`, function (error, addr, resHeaders) {
+                  if (error) return console.log(error);
+                  address = addr;
+                });
+            }
+
+            var qr = 'denarius:'+address;
 
             QRCode.toDataURL(qr, function(err, qrcode) {
 
-                //List Addresses
-                client.getAddressesByAccount(`dnrw(${username})`, function (err, addresses, resHeaders) {
-                    if (err) return console.log(err);
-
-                    res.render('account/wallet', { title: 'Wallet', user: req.user, addresses: addresses, address: address, qrcode: qrcode, balance: balance.toFixed(8), transactions: transactions });
-                });
+            res.render('account/wallet', { title: 'My Wallet', user: req.user, address: address, qrcode: qrcode, balance: balance.toFixed(8), transactions: transactions });
 
             });
           });
