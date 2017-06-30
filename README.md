@@ -4,7 +4,7 @@ Denarius [DNR] NodeJS Web Wallet
 
 [![Dependency Status](https://david-dm.org/carsenk/denariusnodewallet/status.svg?style=flat)](https://david-dm.org/carsenk/denariusnodewallet) [![Build Status](https://travis-ci.org/carsenk/denariusnodewallet.svg?branch=master)](https://travis-ci.org/carsenk/denariusnodewallet) [![Join the chat at https://gitter.im/denariusproject/Lobby](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/denariusproject/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link) [![Thinkful Pair on Node](https://tf-assets-staging.s3.amazonaws.com/badges/thinkful_repo_badge.svg)](http://start.thinkful.com/node/)
 
-![DesktopWallet](https://user-images.githubusercontent.com/10162347/27624155-ba4356ca-5b9c-11e7-837e-8f8e8c2cff32.png)
+![DesktopWallet](https://user-images.githubusercontent.com/10162347/27757111-fe1c778a-5dba-11e7-8390-67007a97c4d0.png)
 ![MobileWallet](https://user-images.githubusercontent.com/10162347/27624165-c1a5c54c-5b9c-11e7-965d-e04dfde77539.png)
 
 **Live Demo**: Currently unavailable
