@@ -10,7 +10,9 @@ block content
       h2 Fast & Secure
       p This online wallet is powered upon NodeJS/MongoDB running in conjunction with a Denarius Full Node, allowing access to the speeds and power of the Denarius blockchain.
       p
-        a.btn.btn-default(href='/login', role='button') Sign Up! »
+        if user
+        else
+          a.btn.btn-default(href='/signup', role='button') Sign Up! »
     .col-sm-6
       h2 What is Denarius?
       p Denarius is a cryptocurrency built upon the original Bitcoin Core Satoshi Nakamoto codebase. It features a new Proof-Of-Work hashing algorithm called "Tribus" and also features Proof-Of-Stake at 6% per year.

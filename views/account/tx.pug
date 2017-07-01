@@ -34,7 +34,9 @@ block content
                 p(align='center') 
                   | TX ID: 
                   a.txid(href="https://chainz.cryptoid.info/dnr/tx.dws?" + transaction.txid, target='_blank') !{transaction.txid.substring(0,30)}
-            p(align='center')
-              a.btn.btn-default(href='/wallet') Go back to wallet
           else
+            br
             h3(align='center', style='color: #bbb;') No Transactions Available
+          p(align='center')
+            br
+            a.btn.btn-default(href='/wallet') Go back to wallet

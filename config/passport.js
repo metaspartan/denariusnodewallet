@@ -92,6 +92,7 @@ passport.use(new FacebookStrategy({
           user.profile.name = user.profile.name || `${profile.name.givenName} ${profile.name.familyName}`;
           user.profile.gender = user.profile.gender || profile._json.gender;
           user.profile.picture = user.profile.picture || `https://graph.facebook.com/${profile.id}/picture?type=large`;
+          user.secret = null;
           user.save((err) => {
             req.flash('info', { msg: 'Facebook account has been linked.' });
             done(err, user);
@@ -119,6 +120,7 @@ passport.use(new FacebookStrategy({
           user.profile.gender = profile._json.gender;
           user.profile.picture = `https://graph.facebook.com/${profile.id}/picture?type=large`;
           user.profile.location = (profile._json.location) ? profile._json.location.name : '';
+          user.secret = null;
           user.save((err) => {
             done(err, user);
           });
@@ -151,6 +153,7 @@ passport.use(new GitHubStrategy({
           user.profile.picture = user.profile.picture || profile._json.avatar_url;
           user.profile.location = user.profile.location || profile._json.location;
           user.profile.website = user.profile.website || profile._json.blog;
+          user.secret = null;
           user.save((err) => {
             req.flash('info', { msg: 'GitHub account has been linked.' });
             done(err, user);
@@ -178,6 +181,7 @@ passport.use(new GitHubStrategy({
           user.profile.picture = profile._json.avatar_url;
           user.profile.location = profile._json.location;
           user.profile.website = profile._json.blog;
+          user.secret = null;
           user.save((err) => {
             done(err, user);
           });
@@ -209,6 +213,7 @@ passport.use(new TwitterStrategy({
           user.profile.name = user.profile.name || profile.displayName;
           user.profile.location = user.profile.location || profile._json.location;
           user.profile.picture = user.profile.picture || profile._json.profile_image_url_https;
+          user.secret = null;
           user.save((err) => {
             if (err) { return done(err); }
             req.flash('info', { msg: 'Twitter account has been linked.' });
@@ -233,6 +238,7 @@ passport.use(new TwitterStrategy({
       user.profile.name = profile.displayName;
       user.profile.location = profile._json.location;
       user.profile.picture = profile._json.profile_image_url_https;
+      user.secret = null;
       user.save((err) => {
         done(err, user);
       });
@@ -263,6 +269,7 @@ passport.use(new GoogleStrategy({
           user.profile.name = user.profile.name || profile.displayName;
           user.profile.gender = user.profile.gender || profile._json.gender;
           user.profile.picture = user.profile.picture || profile._json.image.url;
+          user.secret = null;
           user.save((err) => {
             req.flash('info', { msg: 'Google account has been linked.' });
             done(err, user);
@@ -289,6 +296,7 @@ passport.use(new GoogleStrategy({
           user.profile.name = profile.displayName;
           user.profile.gender = profile._json.gender;
           user.profile.picture = profile._json.image.url;
+          user.secret = null;
           user.save((err) => {
             done(err, user);
           });

@@ -49,11 +49,9 @@ exports.postLogin = (req, res, next) => {
       if (err) { return next(err); }
       if(req.user.secret) {
             req.session.method = 'totp';
-            req.flash('success', { msg: 'Please enter your two-factor auth token to proceed!' });
             res.redirect('/2fa');
         } else {
             req.session.method = 'plain';
-            req.flash('success', { msg: 'Success! You have logged in!' });
             res.redirect('/wallet');
         }
     });
