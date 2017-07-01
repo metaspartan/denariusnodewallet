@@ -47,10 +47,29 @@ exports.postLogin = (req, res, next) => {
     }
     req.logIn(user, (err) => {
       if (err) { return next(err); }
-      req.flash('success', { msg: 'Success! You have logged in!' });
-      res.redirect('/wallet');
+      if(req.user.secret) {
+            req.session.method = 'totp';
+            req.flash('success', { msg: 'Please enter your two-factor auth token to proceed!' });
+            res.redirect('/2fa');
+        } else {
+            req.session.method = 'plain';
+            req.flash('success', { msg: 'Success! You have logged in!' });
+            res.redirect('/wallet');
+        }
     });
   })(req, res, next);
+};
+
+//Route 2FA On or Off Check
+
+exports.check2FA = (req, res) => {
+  if(req.user.secret) {
+        req.session.method = 'totp';
+        res.redirect('/2fa');
+    } else {
+        req.session.method = 'plain';
+        res.redirect('/wallet');
+    }
 };
 
 //2FA Login GET
