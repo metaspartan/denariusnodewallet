@@ -329,6 +329,7 @@ exports.isAuthorized = (req, res, next) => {
   }
 };
 
+// Needs some work still
 exports.ensureTotp = (req, res, next) => {
     if((req.user.secret && req.session.method == 'totp') ||
        (!req.user.secret && req.session.method == 'plain')) {
