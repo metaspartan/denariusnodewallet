@@ -334,5 +334,11 @@ exports.ensureTotp = (req, res, next) => {
        (!req.user.secret && req.session.method == 'plain')) {
         return next();
     }
-    res.redirect('/login');
+    if (req.user.secret && req.session.method != 'totp') {
+      req.flash('info', { msg: "Please enter your 2-factor authentication token code."});
+      res.redirect('/2fa/');
+    } else {
+      return next();
+      //res.redirect('/login');
+    }
 };

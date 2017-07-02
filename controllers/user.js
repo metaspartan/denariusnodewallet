@@ -58,18 +58,6 @@ exports.postLogin = (req, res, next) => {
   })(req, res, next);
 };
 
-//Route 2FA On or Off Check
-
-exports.check2FA = (req, res) => {
-  if(req.user.secret) {
-        req.session.method = 'totp';
-        res.redirect('/2fa');
-    } else {
-        req.session.method = 'plain';
-        res.redirect('/wallet');
-    }
-};
-
 //2FA Login GET
 
 exports.get2FA = (req, res) => {
