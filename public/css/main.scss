@@ -249,6 +249,16 @@ a.minus, a.minus:hover {
     font-weight: 300;
 }
 
+.swapbalance {
+  font-size: 21px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 300;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .error404 {
     font-size: 25px;
     color: #000;
@@ -336,4 +346,11 @@ a.minus, a.minus:hover {
 
 .divTableBody {
     display: table-row-group;
+}
+
+.fa-spin-hover:hover {
+  -webkit-animation: fa-spin 2s infinite linear !important;
+  -moz-animation: fa-spin 2s infinite linear !important;;
+  -o-animation: fa-spin 2s infinite linear !important;;
+  animation: fa-spin 2s infinite linear !important;;
 }

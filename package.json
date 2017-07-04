@@ -58,6 +58,7 @@
     "sprintf": "^0.1.5",
     "thirty-two": "^1.0.2",
     "twit": "^2.2.5",
+    "unirest": "^0.5.1",
     "validator": "^7.0.0",
     "wallet-address-validator": "git://github.com/carsenk/wallet-address-validator"
   },

@@ -27,6 +27,7 @@ const QRCode = require('qrcode');
 const base32 = require('thirty-two');
 const sprintf = require('sprintf');
 const speakeasy = require('speakeasy');
+const unirest = require('unirest');
 
 const upload = multer({ dest: path.join(__dirname, 'uploads') });
 

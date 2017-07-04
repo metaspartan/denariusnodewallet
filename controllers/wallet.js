@@ -5,6 +5,7 @@ const User = require('../models/User');
 const bitcoin = require('bitcoin');
 const WAValidator = require('wallet-address-validator');
 const QRCode = require('qrcode');
+const unirest = require('unirest');
 
 var sendJSONResponse = function (res, status, content) {
     res.status(status);
@@ -89,11 +90,18 @@ exports.wallet = function (req, res) {
 
             var qr = 'denarius:'+address;
 
+            unirest.get("https://api.coinmarketcap.com/v1/ticker/denarius-dnr/")
+              .headers({'Accept': 'application/json'})
+              .end(function (result) {
+                var usdprice = result.body[0]['price_usd'] * balance;
+                var btcprice = result.body[0]['price_btc'] * balance;
+
             QRCode.toDataURL(qr, function(err, qrcode) {
 
-            res.render('account/wallet', { title: 'My Wallet', user: req.user, address: address, qrcode: qrcode, balance: balance.toFixed(8), transactions: transactions });
+            res.render('account/wallet', { title: 'My Wallet', user: req.user, usd: usdprice.toFixed(2), btc: btcprice.toFixed(8), address: address, qrcode: qrcode, balance: balance.toFixed(8), transactions: transactions });
 
             });
+          });
           });
         });
     });

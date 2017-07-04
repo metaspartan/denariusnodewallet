@@ -22,14 +22,26 @@ block content
           $("#plus1").html("<i class='fa fa-plus'></i>");
       }
     }
+    function swp() {
+    var button = document.getElementById("swap");
+      if (button.getAttribute("data-text-swap") == button.innerHTML) {
+        button.innerHTML = button.getAttribute("data-text-original");
+      } else {
+        button.setAttribute("data-text-original", button.innerHTML);
+        button.innerHTML = button.getAttribute("data-text-swap");
+      }
+    }
   .page-header
     if user
       .wallettitle(align='center') DNR
       .balance(align='center')
         | #{balance}
+      #swap.swapbalance(onclick='swp()', data-text-swap=btc+' BTC', align='center')
+        | $#{usd} USD
+      br
       .refresh(align='center')
         a(href='/wallet')
-          i.fa.fa-refresh.fa-2x.fa-spin.lightgrey
+          i.fa.fa-refresh.fa-2x.fa-spin-hover.lightgrey
       br
       .row
         .col-xl-6
